@@ -1,25 +1,42 @@
 import React from 'react'
-import { ListOfCategories } from './components/ListOfCategories'
 import { GlobalStyles } from './styles/globalStyles'
-import { ListOfPhotoCards } from './containers/ListOfPhotoCards'
 import { Logo } from './components/Logo'
-import { PhotoCardWithQuery } from './containers/PhotoCardWithQuery'
-
+import { Home } from './pages/Home'
+import { Router } from '@reach/router'
+import { Detail } from './pages/Detail'
+import { Navbar } from './components/Navbar'
+import { User } from './pages/User'
+import { Favs } from './pages/Favs'
+import { NotRegisteredUser } from './pages/NotRegisteredUser'
+const UserLogged = ({ children }) => {
+  return children({ isAuth: true })
+}
 const App = () => {
-  const parameters = new window.URLSearchParams(window.location.search)
-  const detail = parameters.get('detail')
   return (
     <>
       <GlobalStyles />
       <Logo />
-      {
-        detail
-          ? <PhotoCardWithQuery id={detail} />
-          : <>
-            <ListOfCategories />
-            <ListOfPhotoCards categoryId={3} />
-          </>
-      }
+      <Router>
+        <Home path='/' />
+        <Home path='/pet/:id' />
+        <Detail path='/detail/:detailId' />
+      </Router>
+      <UserLogged>
+        {
+          ({ isAuth }) => (
+            isAuth
+              ? <Router>
+                <Favs path='/favs' />
+                <User path='/profile' />
+                </Router>
+              : <Router>
+                <NotRegisteredUser path='/favs' />
+                <NotRegisteredUser path='/profile' />
+              </Router>
+          )
+        }
+      </UserLogged>
+      <Navbar />
     </>
   )
 }

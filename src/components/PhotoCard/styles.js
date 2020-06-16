@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { fadeIn } from '../../styles/animation'
 
 export const ImgWrapper = styled.div`
-  border-radius: 10px;
+  
   display: block;
   height: 0;
   overflow: hidden;
