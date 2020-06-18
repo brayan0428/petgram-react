@@ -1,5 +1,5 @@
-# curso-platzi-react-avanzado ⚛️
+# Petgram 
 
-¡Sígueme en Youtube! https://www.youtube.com/midudev
+Proyecto realizado con React Js y GraphQL, el cual consiste en mostrar imagenes de mascotas, dares likes, guardar favoritos y contiene formulario de registro e inicio de sesión.
 
-Repositorio con el código del [Curso Avanzado de React de Platzi](https://platzi.com/cursos/react-avanzado/)
+Puedes ver la vista previa haciendo clic aquí: [Petgram](https://petgram.brayan0428.vercel.app)
