@@ -4,7 +4,7 @@ import { Form, Input, Button, Title, Aviso, Accion, Error } from './styles'
 import { Loader } from '../Loader'
 
 export const UserForm = ({ registro, title, onSubmit, onClick, error, loading }) => {
-  const email = useInputValue('')
+  const email = useInputValue('brayan0428@gmail.com')
   const password = useInputValue('')
 
   const handleSubmit = (event) => {
@@ -23,7 +23,7 @@ export const UserForm = ({ registro, title, onSubmit, onClick, error, loading })
         <Button disabled={loading}>{title}</Button>
       </Form>
       {
-        error && <Error>Se presento un error al guardar</Error>
+        error && <Error>{error}</Error>
       }
       {
         registro

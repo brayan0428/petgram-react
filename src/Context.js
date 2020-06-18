@@ -7,7 +7,7 @@ const reducer = (state, action) => {
     case 'LOGIN':
       return {
         ...state,
-        isAuth: true
+        isAuth: action.payload
       }
     default:
       return state
@@ -15,7 +15,7 @@ const reducer = (state, action) => {
 }
 
 const initialState = {
-  isAuth: false
+  isAuth: window.sessionStorage.getItem('token')
 }
 
 export const Provider = ({ children }) => {
