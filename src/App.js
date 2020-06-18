@@ -8,10 +8,11 @@ import { Navbar } from './components/Navbar'
 import { User } from './pages/User'
 import { Favs } from './pages/Favs'
 import { NotRegisteredUser } from './pages/NotRegisteredUser'
-const UserLogged = ({ children }) => {
-  return children({ isAuth: true })
-}
+import { useStateValue } from './Context'
+
 const App = () => {
+  const [{ isAuth }, dispatch] = useStateValue()
+
   return (
     <>
       <GlobalStyles />
@@ -21,21 +22,17 @@ const App = () => {
         <Home path='/pet/:id' />
         <Detail path='/detail/:detailId' />
       </Router>
-      <UserLogged>
-        {
-          ({ isAuth }) => (
-            isAuth
-              ? <Router>
-                <Favs path='/favs' />
-                <User path='/profile' />
-                </Router>
-              : <Router>
-                <NotRegisteredUser path='/favs' />
-                <NotRegisteredUser path='/profile' />
-              </Router>
-          )
-        }
-      </UserLogged>
+      {
+        isAuth
+          ? <Router>
+            <Favs path='/favs' />
+            <User path='/profile' />
+          </Router>
+          : <Router>
+            <NotRegisteredUser path='/favs' />
+            <NotRegisteredUser path='/profile' />
+          </Router>
+      }
       <Navbar />
     </>
   )
