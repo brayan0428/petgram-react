@@ -9,6 +9,12 @@ const reducer = (state, action) => {
         ...state,
         isAuth: action.payload
       }
+    case 'LOGOUT':
+      window.sessionStorage.removeItem('token')
+      return {
+        ...state,
+        isAuth: false
+      }
     default:
       return state
   }
